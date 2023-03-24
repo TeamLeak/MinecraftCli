@@ -1,0 +1,30 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
+    id 'application'
+}
+
+group 'com.github.leanfe'
+version '1.0-SNAPSHOT'
+
+
+application {
+    mainClass = "com.github.leanfe.Application"
+    applicationDefaultJvmArgs = ["--add-opens", "java.base/java.net=ALL-UNNAMED"]
+
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+}
+
+test {
+    useJUnitPlatform()
+}
