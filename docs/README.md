@@ -1,4 +1,3 @@
-# MinecraftCli ✅
 [PROJECT](https://github.com/TeamLeak/MinecraftCli) & [LICENSE](https://github.com/TeamLeak/UnitedMinecraftStates./blob/master/LICENSE) & [WIKI](https://github.com/TeamLeak/UnitedMinecraftStates./wiki)
 
 Well, this is my project that will **allow the launcher not to bother with the launch of the fucking minecraft.**
