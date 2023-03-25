@@ -7,7 +7,14 @@ In fact, **everything is as simple as possible here - I don't know why this wasn
 I just **build a launcher with all the necessary libraries**, as well as an applet that allows you to **load DLL files into CLASSPATH**, 
 after which I **call the main method** from my JAVA program.
 
+![Alt Text](../preview/preview.gif)
+
 ## Usage. 💖
+
+*For tests*, **download the release** from releases and **run using**:
+```
+java -jar MinecraftCli.jar --version 1.16.5 --accessToken null --username Leanfe 
+```
 
 ### Building.
 1. Cloning the repository.
