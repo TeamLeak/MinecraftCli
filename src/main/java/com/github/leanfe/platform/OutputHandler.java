@@ -9,7 +9,7 @@ import java.io.PrintStream;
 public class OutputHandler {
 
     public static void translateOutput() throws IOException {
-        System.out.println("\033[33mRedirecting OUTPUT to launcher-log.log[0m");
+        System.out.println("\033[33mRedirecting OUTPUT to launcher-log.log\033[0m");
 
         var file = new File("launcher-log.log");
 
