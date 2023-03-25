@@ -1,5 +1,7 @@
 package com.github.leanfe.arguments;
 
+import com.github.leanfe.util.MessageDelivery;
+
 public class OptionHelper {
 
     public static void workWithArguments(String... args) {
@@ -7,15 +9,10 @@ public class OptionHelper {
 
         if (args.length == 2) printHelpInformation();
 
-        if (args.length > 2) parsingArguments(args);
     }
-
-    private static void parsingArguments(String... args) {
-
-    }
-
     private static void printError0() {
-        System.err.println("\033[31;1mYou need to at least specify VERSION and accessToken!!!\033[0m");
+        MessageDelivery.sendError("You need to at least specify VERSION and accessToken!!! \n" +
+                "If this did not happen during the launcher tests, contact technical support with this message!");
 
         System.exit(1);
     }
