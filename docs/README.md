@@ -19,15 +19,15 @@ java -jar MinecraftCli.jar --version 1.16.5 --accessToken null --username Leanfe
 ### Building.
 1. Cloning the repository.
 2. Clean your .minecraft folder from everything that is there except the launcher and download the version you need.
-    For example, **Forge** 1.16.5.
+   For example, **Forge** 1.16.5.
 3. **Depending on your platform**, run the necessary PRE-BUILD script.
-4. Launch the game through the launcher, freeze the process after downloading and **copy natives from the versions' folder.**
+4. Launch the game through the launcher, freeze the process after downloading and **copy natives from the versions' folder to natives folder in this project.**
 
-Now that **you have NATIVES for your platform and libraries**, we assemble this project and copy the JAR file to any convenient folder, along with the natives' folder.
+5. Now that **you have NATIVES for your platform and libraries**, we assemble this project and copy the JAR file to any convenient folder, along with the natives' folder.
 
 ### Deploy.
 **I want to note that natives is different for each platform**, so you will most likely have to raise Linux/WSL if you want to make the project cross-platform.
 
-Well, now, **your task is to upload these files to the server**, after which the **task of your launcher will be reduced to downloading natives, the mods, etc and the assembled JAR file**, after which the JAR file will be **launched** with the transfer of **accessToken, version** and other fields. (username, server, etc.)
+Well, now, **your task is to upload these files to the server**, after which the **task of your launcher will be reduced to downloading the mods, maps, ... and the assembled JAR file**, after which the JAR file will be **launched** with the transfer of **accessToken, version** and other fields. (username, server, etc.)
 
 ### 🦷🦷🦷

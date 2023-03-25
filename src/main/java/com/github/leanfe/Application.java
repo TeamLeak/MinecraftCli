@@ -1,6 +1,6 @@
 package com.github.leanfe;
 
-import com.github.leanfe.arguments.OptionHelper;
+import com.github.leanfe.options.OptionHelper;
 import com.github.leanfe.platform.OutputHandler;
 
 import java.io.IOException;
