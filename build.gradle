@@ -7,24 +7,50 @@ plugins {
 group 'com.github.leanfe'
 version '1.0-SNAPSHOT'
 
+def winDir = 'win32-x86-64'
+def linuxDir = 'linux-x86-64' // Replace with the correct directory name
+def macDir = 'macos-x86-64' // Replace with the correct directory name
 
 application {
     mainClass = "com.github.leanfe.Application"
     applicationDefaultJvmArgs = ["--add-opens", "java.base/java.net=ALL-UNNAMED"]
-
 }
 
-repositories {
-    mavenCentral()
+// Define the platform-dependent resource directories
+sourceSets {
+    main {
+        resources {
+            if (System.getProperty("os.name").toLowerCase().contains("win")) {
+                srcDirs "src/main/resources/$winDir"
+            } else if (System.getProperty("os.name").toLowerCase().contains("linux")) {
+                srcDirs "src/main/resources/$linuxDir"
+            } else if (System.getProperty("os.name").toLowerCase().contains("mac")) {
+                srcDirs "src/main/resources/$macDir"
+            } else {
+                srcDirs "src/main/resources"
+            }
+        }
+    }
+}
+
+// Copy the native files to the platform-dependent resource directory
+tasks.register('copyNatives', Copy) {
+    from 'natives'
+    if (System.getProperty("os.name").toLowerCase().contains("win")) {
+        into "src/main/resources/$winDir"
+    } else if (System.getProperty("os.name").toLowerCase().contains("linux")) {
+        into "src/main/resources/$linuxDir"
+    } else if (System.getProperty("os.name").toLowerCase().contains("mac")) {
+        into "src/main/resources/$macDir"
+    } else {
+        into 'src/main/resources'
+    }
+}
+
+shadowJar {
+    dependsOn copyNatives
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
-
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-}
-
-test {
-    useJUnitPlatform()
 }

@@ -14,8 +14,6 @@ public class Application {
                 
                 TRY STARTING... \n""", Constants.OS);
 
-        //        DLLLoader.loadDLL();
-
         OptionHelper.workWithArguments(args);
 
         try {

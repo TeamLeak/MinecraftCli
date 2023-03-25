@@ -139,5 +139,5 @@ gradle-app.setting
 # Java heap dump
 *.hprof
 
-natives
+src/main/resources/natives
 libs

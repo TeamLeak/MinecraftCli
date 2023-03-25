@@ -5,10 +5,17 @@ import com.github.leanfe.util.MessageDelivery;
 public class OptionHelper {
 
     public static void workWithArguments(String... args) {
+        /*
+         * disableChat
+         * gameDir
+         * demo
+         */
+
         if (args.length < 2) printError0();
 
         if (args.length == 2) printHelpInformation();
 
+        //TODO: ADD default arguments, if args.length = 0 or < 2.
     }
     private static void printError0() {
         MessageDelivery.sendError("You need to at least specify VERSION and accessToken!!! \n" +
