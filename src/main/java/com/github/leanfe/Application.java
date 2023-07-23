@@ -7,12 +7,14 @@ import java.io.IOException;
 
 public class Application {
 
+    static {
+        System.setProperty("jdk.internal.module.exports.java.base", "ALL-UNNAMED");
+    }
+
     public static void main(String... args) {
 
-        System.out.printf("""
-                \033[33m[PLATFORM]\033[0m: %s
-                
-                TRY STARTING... \n""", Constants.OS);
+        System.out.printf("\033[33m[PLATFORM]\033[0m: %s\n" +
+                          "\nTRY STARTING... \n", Constants.OS);
 
         OptionHelper.workWithArguments(args);
 
@@ -22,7 +24,9 @@ public class Application {
             OutputHandler.showError2();
         }
 
-        net.minecraft.client.main.Main.main(args);
+        //net.minecraft.client.main.Main.main(args);
+
+        cpw.mods.modlauncher.Launcher.main(args);
     }
 
 }

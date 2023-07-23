@@ -11,7 +11,7 @@ public class OutputHandler {
     public static void translateOutput() throws IOException {
         System.out.println("\033[33mRedirecting OUTPUT to launcher-log.log\033[0m");
 
-        var file = new File("launcher-log.log");
+        File file = new File("launcher-log.log");
 
         if (!file.exists() || file.isDirectory())
             file.createNewFile();
@@ -21,7 +21,7 @@ public class OutputHandler {
     }
 
     public static void showError2() {
-        var message = "Some errors occurred while trying to translate std.out to a file!";
+        String message = "Some errors occurred while trying to translate std.out to a file!";
 
         MessageDelivery.sendWarning(message);
     }

@@ -139,5 +139,9 @@ gradle-app.setting
 # Java heap dump
 *.hprof
 
-src/main/resources/natives
-libs
+src/main/resources/win32-x86-64
+libraries
+assets
+natives
+version
+META-INF

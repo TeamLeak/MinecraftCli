@@ -4,6 +4,19 @@ plugins {
     id 'application'
 }
 
+mainClassName = "com.github.leanfe.Application"
+applicationDefaultJvmArgs = [
+        "--add-exports", "java.base/sun.security.util=ALL-UNNAMED",
+        "--add-exports", "jdk.naming.dns/com.sun.jndi.dns=java.naming",
+        "--add-opens", "java.base/java.net=ALL-UNNAMED",
+        "--add-opens", "java.base/java.util.jar=ALL-UNNAMED",
+        "-XX:+IgnoreUnrecognizedVMOptions"
+]
+
+tasks.withType(JavaCompile).configureEach {
+    options.release = 8
+}
+
 group 'com.github.leanfe'
 version '1.0-SNAPSHOT'
 
@@ -11,10 +24,17 @@ def winDir = 'win32-x86-64'
 def linuxDir = 'linux-x86-64' // Replace with the correct directory name
 def macDir = 'macos-x86-64' // Replace with the correct directory name
 
-application {
-    mainClass = "com.github.leanfe.Application"
-    applicationDefaultJvmArgs = ["--add-opens", "java.base/java.net=ALL-UNNAMED"]
+jar {
+    manifest {
+        attributes(
+                'Main-Class': "${application.mainClass}",
+                'Add-Exports': 'java.base/sun.security.util=ALL-UNNAMED,java.base/java.net=ALL-UNNAMED,java.base/java.util.jar=ALL-UNNAMED,jdk.naming.dns/com.sun.jndi.dns=java.naming',
+                'Add-Opens': 'java.base/sun.security.util=ALL-UNNAMED,java.base/java.net=ALL-UNNAMED,java.base/java.util.jar=ALL-UNNAMED',
+                'Multi-Release': 'true'
+        )
+    }
 }
+
 
 // Define the platform-dependent resource directories
 sourceSets {
@@ -52,5 +72,9 @@ shadowJar {
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation fileTree(include: ['*.jar'], dir: 'libraries')
+    implementation fileTree(include: ['*.jar'], dir: 'version')
+    implementation fileTree(include: ['*'], dir: 'META-INF')
+    implementation fileTree(include: ['*.dll'], dir: 'natives')
+
 }
