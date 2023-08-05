@@ -24,17 +24,39 @@ def winDir = 'win32-x86-64'
 def linuxDir = 'linux-x86-64' // Replace with the correct directory name
 def macDir = 'macos-x86-64' // Replace with the correct directory name
 
+ext {
+    // Default values for custom attributes
+    implementationTitle = 'FML Launcher'
+    implementationVersion = '36.2'
+    implementationVendor = 'Forge'
+
+    specificationTitle = 'Launcher'
+    specificationVersion = '4.0'
+    specificationVendor = 'Forge Development LLC'
+}
+
+println "Implementation-Title: ${implementationTitle}"
+println "Specification-Version: ${specificationVersion}"
+println "Implementation-Version: ${implementationVersion}"
+println "Specification-Title: ${specificationTitle}"
+
 jar {
     manifest {
         attributes(
                 'Main-Class': "${application.mainClass}",
+                'Implementation-Title': implementationTitle,
+                'Implementation-Version': implementationVersion,
+                'Implementation-Vendor': implementationVendor,
+
+                'Specification-Title': specificationTitle,
+                'Specification-Version': specificationVersion,
+                'Specification-Vendor': specificationVendor,
                 'Add-Exports': 'java.base/sun.security.util=ALL-UNNAMED,java.base/java.net=ALL-UNNAMED,java.base/java.util.jar=ALL-UNNAMED,jdk.naming.dns/com.sun.jndi.dns=java.naming',
                 'Add-Opens': 'java.base/sun.security.util=ALL-UNNAMED,java.base/java.net=ALL-UNNAMED,java.base/java.util.jar=ALL-UNNAMED',
-                'Multi-Release': 'true'
+                'Multi-Release': 'true',
         )
     }
 }
-
 
 // Define the platform-dependent resource directories
 sourceSets {

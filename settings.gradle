@@ -1,2 +1,3 @@
 rootProject.name = 'MinecraftCli'
+include 'ClassLoaderAgent'
 
