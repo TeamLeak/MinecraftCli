@@ -1,0 +1,33 @@
+plugins {
+    id 'java'
+}
+
+group 'com.github.leanfe'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation fileTree(include: ['asm-*.jar'], dir: '../libraries')
+}
+
+jar {
+    manifest {
+        attributes(
+                'Premain-Class': 'com.github.leanfe.agent.ClassReloaderAgent'
+        )
+    }
+
+    archiveFileName = "${archivesBaseName}.jar"
+    doLast {
+        copy {
+            from jar.archivePath
+            into '../build/libs'
+            rename { fileName ->
+                fileName.replace("${project.version}.jar", "${archivesBaseName}.jar")
+            }
+        }
+    }
+}
