@@ -5,10 +5,14 @@ import com.github.leanfe.platform.OutputHandler;
 import cpw.mods.modlauncher.Launcher;
 
 import java.io.IOException;
-import java.lang.instrument.Instrumentation;
 import java.util.Optional;
 
 public class Application {
+
+    // C:\Users\lkapi\.jdks\liberica-1.8.0_382\bin\java.exe -jar .\MinecraftCli-1.0-SNAPSHOT-all.jar
+    // --version 1.16.5 --accessToken null --username Leanfe --fml.forgeVersion 36.2.39
+    // --fml.mcpVersion 20210115.111550  --launchTarget fmlclient --gameDir .
+    // --fml.mcVersion 1.16.5 --fml.forgeGroup net.minecraftforge --versionType modified
 
     private static Optional<String> getImplementationVersion() {
         String pkgVersion = Application.class.getPackage().getImplementationVersion();
@@ -33,14 +37,7 @@ public class Application {
             OutputHandler.showError2();
         }
 
-        try {
-            Class<?> agentClass = Class.forName("ClassReloaderAgent");
-            java.lang.reflect.Method premainMethod = agentClass.getMethod("premain", String.class, Instrumentation.class);
-
-            Instrumentation inst = (Instrumentation) premainMethod.invoke(null, null);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        AgentLoader.run(args);
 
         Launcher.main(args);
 

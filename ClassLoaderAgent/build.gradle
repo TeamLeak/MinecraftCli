@@ -16,11 +16,14 @@ dependencies {
 jar {
     manifest {
         attributes(
-                'Premain-Class': 'com.github.leanfe.agent.ClassReloaderAgent'
+                'Agent-Class': 'com.github.leanfe.agent.ClassReloaderAgent',
+                'Can-Redefine-Classes': 'true',
+                'Can-Retransform-Classes': 'true',
+                'Premain-Class': 'com.github.leanfe.agent.ClassReloaderAgent',
         )
     }
 
-    archiveFileName = "${archivesBaseName}.jar"
+    archiveFileName = "Agent.jar"
     doLast {
         copy {
             from jar.archivePath

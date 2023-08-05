@@ -10,11 +10,12 @@ applicationDefaultJvmArgs = [
         "--add-exports", "jdk.naming.dns/com.sun.jndi.dns=java.naming",
         "--add-opens", "java.base/java.net=ALL-UNNAMED",
         "--add-opens", "java.base/java.util.jar=ALL-UNNAMED",
-        "-XX:+IgnoreUnrecognizedVMOptions"
+        "-XX:+IgnoreUnrecognizedVMOptions",
+        '-Djdk.attach.allowAttachSelf=true'
 ]
 
 tasks.withType(JavaCompile).configureEach {
-    options.release = 8
+    options.release = 16
 }
 
 group 'com.github.leanfe'
@@ -94,6 +95,8 @@ shadowJar {
 }
 
 dependencies {
+    implementation files("Tools/tools-1.5.0.jar")
+
     implementation fileTree(include: ['*.jar'], dir: 'libraries')
     implementation fileTree(include: ['*.jar'], dir: 'version')
     implementation fileTree(include: ['*'], dir: 'META-INF')
