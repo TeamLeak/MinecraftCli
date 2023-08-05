@@ -2,19 +2,14 @@ package com.github.leanfe.agent;
 
 import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.Instrumentation;
-import java.security.ProtectionDomain;
 
 public class ClassReloaderAgent {
     public static void premain(String agentArgs, Instrumentation inst) {
-        ClassFileTransformer transformer = new ClassFileTransformer() {
-            @Override
-            public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined,
-                                    ProtectionDomain protectionDomain, byte[] classfileBuffer) {
-                if (className.equals("net.minecraftforge.fml.loading.FMLLoader")) {
-                    return EventBusTransformer.transform(classfileBuffer);
-                }
-                return classfileBuffer;
+        ClassFileTransformer transformer = (loader, className, classBeingRedefined, protectionDomain, classfileBuffer) -> {
+            if (className.equals("net.minecraftforge.fml.loading.FMLLoader")) {
+                return EventBusTransformer.transform(classfileBuffer);
             }
+            return classfileBuffer;
         };
 
         inst.addTransformer(transformer, true);
