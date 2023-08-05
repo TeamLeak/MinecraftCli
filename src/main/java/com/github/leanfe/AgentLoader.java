@@ -11,7 +11,7 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class AgentLoader {
 
-    public static void run(String[] args) {
+    public static void run() {
         String agentFilePath = "Z:\\Workspace\\MinecraftCli\\build\\libs\\Agent.jar";
         String applicationName = "MinecraftCli";
 

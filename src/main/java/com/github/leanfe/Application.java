@@ -37,7 +37,7 @@ public class Application {
             OutputHandler.showError2();
         }
 
-        AgentLoader.run(args);
+        AgentLoader.run();
 
         Launcher.main(args);
 
